@@ -24,7 +24,6 @@ import { FormEvent, useState, useTransition } from "react";
 import { BotIcon, LanguagesIcon } from "lucide-react";
 import { toast } from "sonner";
 import Markdown from "react-markdown";
-import model from "@/lib/gemini";
 
 type Language =
 	| "english"
@@ -65,18 +64,32 @@ function TranslateDocument({ doc }: { doc: Y.Doc }) {
 
 			const prompt = `You are going to summarize ${documentData} and translate summarized text in ${language}. `;
 
-			// If ${input} is start with ! mark, you do not give a summary for ${documentData} but answer ${input}, which is start with ! mark.
-			const result = await model.generateContent(prompt);
+			// const result = await model.generateContent(prompt);
 
-			if (result) {
-				const response = await result.response;
-				const text = response.text();
-
-				setSummary(text);
-
-				toast.success("Translation completed");
+			const response = await fetch("/api/generate", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ body: prompt }),
+			});
+			const data = await response.json();
+			if (response.ok) {
+				setSummary(data.output);
+			} else {
+				setSummary(data.error);
 			}
 
+			// if (result) {
+			// 	const response = await result.response;
+			// 	const text = response.text();
+
+			// 	setSummary(text);
+
+			// 	toast.success("Translation completed");
+			// }
+
+			//////////////////////////////////////////
 			// const res = await fetch(
 			// 	`${process.env.NEXT_PUBLIC_BASE_URL}/translateDocument`,
 			// 	{

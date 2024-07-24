@@ -16,7 +16,6 @@ import { Input } from "./ui/input";
 import * as Y from "yjs";
 import { BotIcon, MessageCircleCode } from "lucide-react";
 import Markdown from "react-markdown";
-import model from "@/lib/gemini";
 
 function ChatToDocument({ doc }: { doc: Y.Doc }) {
 	const [input, setInput] = useState("");
@@ -36,17 +35,33 @@ function ChatToDocument({ doc }: { doc: Y.Doc }) {
 			const prompt = `You are going to give me a brief summary based on ${documentData} or answer my question, which is ${input}, based on ${documentData}. If you think a ${input} is not relevant to contents or texts in ${documentData}, you can give me a general answer. `;
 
 			// If ${input} is start with ! mark, you do not give a summary for ${documentData} but answer ${input}, which is start with ! mark.
-			const result = await model.generateContent(prompt);
 
-			if (result) {
-				const response = await result.response;
-				const text = response.text();
-
+			const response = await fetch("/api/generate", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ body: prompt }),
+			});
+			const data = await response.json();
+			if (response.ok) {
 				setInput("");
-				setSummary(text);
-
-				toast.success("Question asked successfully!!!");
+				setSummary(data.output);
+			} else {
+				setSummary(data.error);
 			}
+
+			// const result = await model.generateContent(prompt);
+
+			// if (result) {
+			// 	const response = await result.response;
+			// 	const text = response.text();
+
+			// 	setInput("");
+			// 	setSummary(text);
+
+			// 	toast.success("Question asked successfully!!!");
+			// }
 
 			// const res = await fetch(
 			// 	`${process.env.NEXT_PUBLIC_BASE_URL}/chatToDocument`,
