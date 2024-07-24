@@ -6,9 +6,7 @@ import Link from "next/link";
 const DocumentList = async () => {
 	const clerkUser = await currentUser();
 
-	const roomDocuments = await getDocsInfo(
-		clerkUser!.emailAddresses[0].emailAddress
-	);
+	const roomDocuments = await getDocsInfo();
 
 	return (
 		<div>
