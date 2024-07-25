@@ -82,8 +82,9 @@ function Sidebar() {
 	const menuOptions = (
 		<>
 			<NewDoucmentButton />
+
 			{isSignedIn ? (
-				<div className="flex py-4 flex-col space-y-4 md:max-w-36">
+				<div className="flex py-4 flex-col space-y-4 md:max-w-36 h-full">
 					{/* My docs */}
 					{groupedData.owner.length === 0 ? (
 						<h2 className="text-gray-500 font-semibold text-sm">
@@ -142,16 +143,13 @@ function Sidebar() {
 	}
 
 	return (
-		<div>
+		<div className="h-screen">
 			{isSignedIn ? (
 				<div className="p-2 md:p-5 bg-[#FEFBF6] relative">
 					<div className="md:hidden">
 						<Sheet>
 							<SheetTrigger>
-								<MenuIcon
-									className="p-2 hover:opacity-30 rounded-lg"
-									size={40}
-								/>
+								<MenuIcon className="hover:opacity-30 rounded-lg" size={20} />
 							</SheetTrigger>
 							<SheetContent side="left">
 								<SheetHeader>

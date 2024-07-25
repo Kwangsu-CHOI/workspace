@@ -71,3 +71,11 @@
 		@apply bg-background text-foreground font-lexen;
 	}
 }
+.bn-container[data-theming-css] .bn-editor * {
+	padding-inline: 0px;
+}
+@media (min-width: 640px) {
+	.bn-container[data-theming-css] .bn-editor * {
+		padding-inline: 0px;
+	}
+}

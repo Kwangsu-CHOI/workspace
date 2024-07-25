@@ -15,6 +15,7 @@ import "@blocknote/shadcn/style.css";
 import stringToColor from "@/lib/stringToColor";
 import TranslateDocument from "./TranslateDocument";
 import ChatToDocument from "./ChatToDocument";
+import "../app/styles.css";
 
 type EditorProps = {
 	doc: Y.Doc;
@@ -37,9 +38,10 @@ const BlockNote = ({ doc, provider, darkMode }: EditorProps) => {
 	return (
 		<div className="relative max-w-6xl mx-auto">
 			<BlockNoteView
-				className="min-h-screen"
+				className="min-h-screen w-full"
 				editor={editor}
 				theme={darkMode ? "dark" : "light"}
+				data-theming-css
 			/>
 		</div>
 	);
@@ -74,7 +76,7 @@ function Editor() {
 	}`;
 
 	return (
-		<div className="max-w-6xl mx-auto">
+		<div className="max-w-6xl mx-auto w-full">
 			<div className="flex items-center gap-2 justify-end mb-5">
 				{/* Ai Translate Doc */}
 				<TranslateDocument doc={doc} />

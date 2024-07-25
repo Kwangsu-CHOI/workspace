@@ -28,6 +28,7 @@ const DocumentList = async () => {
 				</h1>
 				<hr className="w-full max-w-[500px] my-3 flex justify-center items-center" />
 			</div>
+
 			<div className="w-full flex flex-row flex-wrap gap-10 ml-5 mt-5">
 				{roomDocuments.data.map(({ id, metadata, createdAt }: any) => (
 					<div key={id} className="w-[250px] max-w-[350px]">

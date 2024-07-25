@@ -11,6 +11,7 @@ import {
 	AccordionTrigger,
 } from "@/components/ui/accordion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
 	const { isSignedIn, user } = useUser();
@@ -27,20 +28,23 @@ export default function Home() {
 					<h1 className="font-bold">
 						Get started with creating a New Document!
 					</h1>
+					<Link href="/doc/list">
+						<Button className="bg-black text-white mr-1">My List</Button>
+					</Link>
 				</div>
 			) : (
 				<div>
-					<div className="flex justify-between gap-2 mt-5">
+					<div className="flex justify-between items-center gap-2 mt-5 md:flex-row lg:flex-row flex-col">
 						<div>
 							<Image
 								src="/workspace.jpg"
 								alt="workspace"
 								width={500}
 								height={300}
-								className="w-full"
+								className="w-full "
 							/>
 						</div>
-						<div className="max-w-[535px] w-full flex flex-col justify-center p-7 bg-white">
+						<div className="max-w-[535px] w-full flex flex-col justify-center p-7 bg-[#D6EFD8]">
 							<div className="flex flex-col item-start items-center">
 								<h1 className="text-2xl">Create your workspace</h1>
 								<div className="flex items-baseline">
@@ -49,12 +53,12 @@ export default function Home() {
 								</div>
 							</div>
 							<hr className="w-full my-3" />
-							<div className="flex justify-between">
+							<div className="flex justify-center gap-5">
 								<div className="flex flex-col">
 									<p className="text-sm font-light mb-1">Have an account?</p>
 									<div>
 										<Button className="bg-[#06D001]">
-											<a href="/sign-in">Sign in NOW</a>
+											<a href="/sign-in">Sign in</a>
 										</Button>
 									</div>
 								</div>
@@ -62,22 +66,22 @@ export default function Home() {
 									<p className="text-sm font-light mb-1">New User?</p>
 									<div>
 										<Button className="bg-[#5755FE]">
-											<a href="/sign-up">Sign up NOW</a>
+											<a href="/sign-up">Sign up</a>
 										</Button>
 									</div>
 								</div>
-								<div className="flex flex-col">
+								{/* <div className="flex flex-col">
 									<p className="text-sm font-light mb-1">Have a question?</p>
 									<div>
 										<Button className="bg-[#8C7676]">
 											<a href="#">Contact me</a>
 										</Button>
 									</div>
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>
-					<div className="flex flex-col item-start justify-start bg-white">
+					<div className="flex flex-col item-start justify-start bg-white w-full p-4">
 						<p className="mt-3 text-2xl font-extrabold text-[#EB455F]">FAQ</p>
 						<Accordion type="single" collapsible>
 							<AccordionItem value="item-1">
