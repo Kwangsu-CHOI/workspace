@@ -32,7 +32,7 @@ function ChatToDocument({ doc }: { doc: Y.Doc }) {
 		startTransition(async () => {
 			const documentData = doc.get("document-store").toJSON();
 
-			const prompt = `You are going to give me a brief summary based on ${documentData} or answer my question, which is ${input}, based on ${documentData}. If you think a ${input} is not relevant to contents or texts in ${documentData}, you can give me a general answer. `;
+			const prompt = `You are going to give me a brief summary based on ${documentData} or answer my question, which is ${input}, based on ${documentData}. If you think a ${input} is not relevant to contents or texts in ${documentData}, only return a general answer for the ${input}.`;
 
 			// If ${input} is start with ! mark, you do not give a summary for ${documentData} but answer ${input}, which is start with ! mark.
 
