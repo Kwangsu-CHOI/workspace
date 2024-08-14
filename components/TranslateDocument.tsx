@@ -62,7 +62,7 @@ function TranslateDocument({ doc }: { doc: Y.Doc }) {
 		startTransition(async () => {
 			const documentData = doc.get("document-store").toJSON();
 
-			const prompt = `You are going to summarize ${documentData} and translate summarized text in ${language}. `;
+			const prompt = `You are going to summarize ${documentData} and only return translate summarized text in ${language}. Also, after previous job, add line breaker like dashes and provide full translation of ${documentData} in ${language}.`;
 
 			// const result = await model.generateContent(prompt);
 
